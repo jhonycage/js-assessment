@@ -11,7 +11,24 @@ flowControlAnswers = {
    * @param {Number} num - A number used to determine the result
    * @returns {String} The string 'fizz', 'buzz', or 'fizzbuzz'
    */
+  
   fizzBuzz: function fizzBuzz(num) {
-
+    const obj = {
+      isDivisibleByThreeAndFive: { message: 'fizzbuzz' },
+      isDivisibleByThree: { message: 'fizz' },
+      isDivisibleByFive: { message: 'buzz' },
+    };
+    if (num && !isNaN(num)) {
+      const isDivisibleByThreeAndFive = num % 3 === 0 && num % 5 === 0;
+      if (isDivisibleByThreeAndFive) {
+        return obj.isDivisibleByThreeAndFive.message;
+      } else if (num % 3 === 0) {
+        return obj.isDivisibleByThree.message;
+      } else if (num % 5 === 0) {
+        return obj.isDivisibleByFive.message;
+      }
+      return num;
+    }
+    return false;
   },
 };
