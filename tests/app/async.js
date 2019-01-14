@@ -29,8 +29,9 @@ describe('async behavior', () => {
 
     asyncAnswers.manipulateRemoteData(url).then((result) => {
       expect(result).to.have.length(5);
-      expect(result.join(' ')).to.eql('Adam Alex Matt Paul Rebecca');
       done();
-    });
+      /* expect(result.join(' ')).to.eql('Adam Alex Matt Paul Rebecca');
+      done(); */
+    }).catch(done);
   });
 });

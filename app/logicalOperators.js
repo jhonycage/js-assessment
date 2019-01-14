@@ -8,7 +8,7 @@ logicalOperatorsAnswers = {
    * @param {bool} b - A boolean value
    * @returns {bool} True if either a, b, or both are true, false otherwise.
    */
-  or: function or(a, b) {
+  or: (a, b) => {
     return (a || b);
   },
 

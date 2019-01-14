@@ -8,7 +8,7 @@ arraysAnswers = {
    */
   indexOf: function indexOf(arr, item) {
     // Implement a function, that returns the 0 based index of an element in an array.
-    return arr.findIndex((e) => { return e === item;});
+    return arr.findIndex((e) => e === item);
   },
 
   /**
@@ -34,10 +34,16 @@ arraysAnswers = {
    */
   remove: function remove(arr, item) {
     let copy = [];
-    copy = arr.filter((e) => {
-      return e !== item;
-    });
+    copy = arr.filter((e) => e !== item);
     return copy;
+  },
+
+  removeWithoutCopy: function removeWithoutCopy(arr, item) {
+    console.log(arr, item);
+    let copy = [];
+    arr = arr.filter((e) => e !== item);
+    console.log(copy);
+    return arr;
   },
 
   /**

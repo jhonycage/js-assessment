@@ -1,3 +1,34 @@
+function appendFiles(data, filesa) {
+  data.files.forEach((f) => {
+    filesa.push(f);
+  });
+  data.subDirs.forEach((e) => {
+    if (e.subDirs != []) {
+      appendFiles(e, filesa);
+    }
+  });
+  return filesa;
+}
+var res = []
+function searchDir(data, dirName) {
+  if (res.length > 0) {
+    return res
+  }
+  if (data.dirName === dirName) {
+    res = appendFiles(data, []);
+    data.subDirs = [];
+    return res;
+  } else {
+    data.subDirs.forEach((s) => {
+      if (s.subDirs != []) {
+        const result = searchDir(s, dirName);
+        return result;
+      }
+    });
+  }
+  return res;
+}
+
 recursionAnswers = {
   /**
    * List the files in a given directory, of a filesystem described by data.
@@ -17,31 +48,7 @@ recursionAnswers = {
    * @returns {Number[]} The files under the directory dirName, including subdiretories.
    */
   listFiles: function listFiles(data, dirName) {
-    console.log(dirName);
-    console.log(data);
-    const res = [];
-    if (dirName !== undefined) {
-      console.log('entre');
-      const dir = data[dirName];
-      return dir.files;
-    }
-    console.log(data.files);
-    const x = data.files.forEach((f) => {
-      res.push(f);
-    });
-    console.log(x);
-
-    let temp = data.subDirs;
-    temp.forEach((e) => {
-      if (e.files) {
-        e.files.forEach((t) => {
-          res.push(t);
-        });
-      }
-      temp = e.subDirs;
-    });
-    console.log(res);
-    return res;
+    return dirName !== undefined ? searchDir(data, dirName) : appendFiles(data, []);
   },
   /**
    * Determines the fibonacci number at position n.
